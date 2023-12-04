@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    
+
+
+
+    <h3>Click on the items to cross them off, once you are finished!</h1>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4c3; /* Light green background */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #ff6f61; /* Bright orange */
+        }
+
+        #todo-form {
+            margin-bottom: 20px;
+        }
+
+        #new-todo {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: calc(100% - 100px);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffecb3; /* Light orange */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffcc80; /* Darker orange */
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            background-color: #fff;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My To-Do List</h1>
+        <form id="todo-form">
+            <input type="text" id="new-todo" placeholder="What needs to be done?">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="todo-list">
+            <!-- To-Do items will appear here -->
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('todo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newTodoText = document.getElementById('new-todo').value;
+
+            if (newTodoText) {
+                const listItem = document.createElement('li');
+                listItem.textContent = newTodoText;
+                listItem.className = 'todo-item';
+                listItem.addEventListener('click', function() {
+                    this.classList.toggle('completed');
+                });
+                document.getElementById('todo-list').appendChild(listItem);
+                document.getElementById('new-todo').value = ''; // Clear input
+            }
+        });
+    </script>
+</body>
+</html>
